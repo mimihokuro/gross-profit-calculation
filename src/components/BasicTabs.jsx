@@ -34,8 +34,6 @@ function a11yProps(index) {
   };
 }
 
-const GROSS_MARGIN_RATIO_ITEMS = [{ label: "原価" }, { label: "売上" }];
-
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
 
@@ -57,7 +55,7 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <GrossMarginRatio items={GROSS_MARGIN_RATIO_ITEMS} />
+        <GrossMarginRatio />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         Item Two
