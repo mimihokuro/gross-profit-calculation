@@ -11,8 +11,11 @@ const GrossProfitRatio = () => {
     const parseCost = parseFloat(cost);
     const parseSales = parseFloat(sales);
     if (!isNaN(parseCost) && !isNaN(parseSales)) {
-      setGrossProfit(parseSales - parseCost);
-      setGrossProfitRatio(Math.round((grossProfit / parseSales) * 1000) / 10);
+      const calculatedGrossProfit = parseSales - parseCost;
+      const calculatedGrossProfitRatio =
+        Math.round((calculatedGrossProfit / parseSales) * 1000) / 10;
+      setGrossProfit(calculatedGrossProfit);
+      setGrossProfitRatio(calculatedGrossProfitRatio);
     } else {
       setGrossProfit(0);
       setGrossProfitRatio(0);
