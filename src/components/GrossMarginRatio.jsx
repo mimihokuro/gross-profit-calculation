@@ -1,5 +1,6 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 const GrossProfitRatio = () => {
   const [cost, setCost] = useState("");
@@ -62,41 +63,40 @@ const GrossProfitRatio = () => {
           fontSize={24}
           fontWeight="bold"
           onClick={calculationGrossProfit}
+          endIcon={<RocketLaunchIcon />}
         >
-          計算実行＞
+          計算実行
         </Button>
         <Stack
           flexGrow={1}
           borderRadius={2}
+          gap={1}
+          py={4}
+          px={2}
           backgroundColor="#f0f0f0"
           justifyContent="center"
+          alignItems="center"
         >
-          <Stack direction="row" alignItems="center" p={2} pb={0}>
-            <Typography variant="subtitle1" fontSize={24}>
+          <Stack direction="row" alignItems="center">
+            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
               粗利益：
             </Typography>
-            <Typography variant="subtitle1" fontSize={32}>
+            <Typography variant="subtitle1" fontSize={36} lineHeight="1">
               {grossProfit}
             </Typography>
-            <Typography variant="subtitle1" fontSize={28}>
+            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
               円
             </Typography>
           </Stack>
-          <Stack
-            backgroundColor="#f0f0f0"
-            direction="row"
-            alignItems="center"
-            p={2}
-            pt={0}
-          >
-            <Typography variant="subtitle1" fontSize={24}>
-              粗利率：
+          <Stack direction="row" alignItems="center">
+            <Typography variant="subtitle1" fontSize={20} lineHeight="1">
+              （粗利率：
             </Typography>
-            <Typography variant="subtitle1" fontSize={28}>
+            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
               {grossProfitRatio}
             </Typography>
-            <Typography variant="subtitle1" fontSize={24}>
-              %
+            <Typography variant="subtitle1" fontSize={20} lineHeight="1">
+              %）
             </Typography>
           </Stack>
         </Stack>
