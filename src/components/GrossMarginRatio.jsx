@@ -5,14 +5,17 @@ const GrossProfitRatio = () => {
   const [cost, setCost] = useState("");
   const [sales, setSales] = useState("");
   const [grossProfit, setGrossProfit] = useState(0);
+  const [grossProfitRatio, setGrossProfitRatio] = useState(0);
 
   const calculationGrossProfit = () => {
     const parseCost = parseFloat(cost);
     const parseSales = parseFloat(sales);
     if (!isNaN(parseCost) && !isNaN(parseSales)) {
       setGrossProfit(parseSales - parseCost);
+      setGrossProfitRatio(Math.round((grossProfit / parseSales) * 1000) / 10);
     } else {
       setGrossProfit(0);
+      setGrossProfitRatio(0);
     }
   };
 
@@ -23,8 +26,13 @@ const GrossProfitRatio = () => {
 
   return (
     <>
-      <Stack direction="row" spacing={8} alignItems="center">
-        <Stack spacing={4}>
+      <Stack
+        direction="row"
+        gap={4}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Stack spacing={4} backgroundColor="#f5f5f5" borderRadius={2} p={2}>
           {GROSS_MARGIN_RATIO_ITEMS.map((item) => {
             return (
               <Stack
@@ -55,24 +63,39 @@ const GrossProfitRatio = () => {
           計算実行＞
         </Button>
         <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          backgroundColor="#f0f0f0"
-          px={4}
-          py={2}
+          flexGrow={1}
           borderRadius={2}
-          alignSelf="stretch"
+          backgroundColor="#f0f0f0"
+          justifyContent="center"
         >
-          <Typography variant="subtitle1" fontSize={24}>
-            粗利：
-          </Typography>
-          <Typography variant="subtitle1" fontSize={40}>
-            {grossProfit}
-          </Typography>
-          <Typography variant="subtitle1" fontSize={32}>
-            円
-          </Typography>
+          <Stack direction="row" alignItems="center" p={2} pb={0}>
+            <Typography variant="subtitle1" fontSize={24}>
+              粗利益：
+            </Typography>
+            <Typography variant="subtitle1" fontSize={32}>
+              {grossProfit}
+            </Typography>
+            <Typography variant="subtitle1" fontSize={28}>
+              円
+            </Typography>
+          </Stack>
+          <Stack
+            backgroundColor="#f0f0f0"
+            direction="row"
+            alignItems="center"
+            p={2}
+            pt={0}
+          >
+            <Typography variant="subtitle1" fontSize={24}>
+              粗利率：
+            </Typography>
+            <Typography variant="subtitle1" fontSize={28}>
+              {grossProfitRatio}
+            </Typography>
+            <Typography variant="subtitle1" fontSize={24}>
+              %
+            </Typography>
+          </Stack>
         </Stack>
       </Stack>
     </>
