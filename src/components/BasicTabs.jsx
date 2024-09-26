@@ -42,7 +42,7 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box mx="auto" minWidth="320px" maxWidth="640px" width="100%">
+    <Box mx="auto" width="100%">
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}

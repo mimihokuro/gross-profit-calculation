@@ -15,7 +15,7 @@ const GrossProfitRatio = () => {
       const calculatedGrossProfit = parseSales - parseCost;
       const calculatedGrossProfitRatio =
         Math.round((calculatedGrossProfit / parseSales) * 1000) / 10;
-      setGrossProfit(calculatedGrossProfit);
+      setGrossProfit(calculatedGrossProfit.toLocaleString());
       setGrossProfitRatio(calculatedGrossProfitRatio);
     } else {
       setGrossProfit(0);
@@ -31,10 +31,12 @@ const GrossProfitRatio = () => {
   return (
     <>
       <Stack
-        direction="row"
-        gap={4}
         alignItems="center"
         justifyContent="space-between"
+        sx={{
+          flexDirection: { xs: "column", sm: "row" },
+          gap: { xs: "0", sm: "16px" },
+        }}
       >
         <Stack spacing={4} backgroundColor="#f5f5f5" borderRadius={2} p={2}>
           {GROSS_MARGIN_RATIO_ITEMS.map((item) => {
@@ -44,7 +46,9 @@ const GrossProfitRatio = () => {
                 key={item.label}
                 direction="row"
                 alignItems="center"
-                maxWidth={160}
+                sx={{
+                  maxWidth: { sm: "160px" },
+                }}
               >
                 <TextField
                   id="outlined-basic"
@@ -58,10 +62,19 @@ const GrossProfitRatio = () => {
             );
           })}
         </Stack>
+        <Typography
+          fontWeight="bold"
+          fontSize={32}
+          sx={{
+            rotate: { xs: "90deg", sm: "0deg" },
+          }}
+        >
+          ＞
+        </Typography>
         <Button
           variant="contained"
-          fontSize={24}
           fontWeight="bold"
+          sx={{ fontSize: "20px" }}
           onClick={calculationGrossProfit}
           endIcon={<RocketLaunchIcon />}
         >
@@ -73,31 +86,40 @@ const GrossProfitRatio = () => {
           gap={1}
           py={4}
           px={2}
+          sx={{
+            width: { xs: "100%", sm: "initial" },
+            mt: { xs: "2rem", sm: "0" },
+            ml: { xs: "0", sm: "2rem" },
+          }}
           backgroundColor="#f0f0f0"
           justifyContent="center"
           alignItems="center"
         >
-          <Stack direction="row" alignItems="center">
+          <Stack direction="row" alignItems="center" flexWrap="wrap">
             <Typography variant="subtitle1" fontSize={24} lineHeight="1">
               粗利益：
             </Typography>
-            <Typography variant="subtitle1" fontSize={36} lineHeight="1">
-              {grossProfit}
-            </Typography>
-            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
-              円
-            </Typography>
+            <Stack direction="row" alignItems="center">
+              <Typography variant="subtitle1" fontSize={36} lineHeight="1">
+                {grossProfit}
+              </Typography>
+              <Typography variant="subtitle1" fontSize={24} lineHeight="1">
+                円
+              </Typography>
+            </Stack>
           </Stack>
-          <Stack direction="row" alignItems="center">
+          <Stack direction="row" alignItems="center" flexWrap="wrap">
             <Typography variant="subtitle1" fontSize={20} lineHeight="1">
               （粗利率：
             </Typography>
-            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
-              {grossProfitRatio}
-            </Typography>
-            <Typography variant="subtitle1" fontSize={20} lineHeight="1">
-              %）
-            </Typography>
+            <Stack direction="row" alignItems="center">
+              <Typography variant="subtitle1" fontSize={24} lineHeight="1">
+                {grossProfitRatio}
+              </Typography>
+              <Typography variant="subtitle1" fontSize={20} lineHeight="1">
+                %）
+              </Typography>
+            </Stack>
           </Stack>
         </Stack>
       </Stack>

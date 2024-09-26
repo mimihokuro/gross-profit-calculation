@@ -3,8 +3,8 @@ import BasicTabs from "./components/BasicTabs";
 
 function App() {
   return (
-    <Container>
-      <Typography variant="h1" gutterBottom>
+    <Container maxWidth="md">
+      <Typography variant="h1" gutterBottom fontSize={40}>
         粗利計算ツール
       </Typography>
       <BasicTabs />
