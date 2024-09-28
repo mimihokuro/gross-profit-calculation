@@ -2,30 +2,40 @@ import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
-const GrossProfitRatio = () => {
+const SellingPriceCalculation = () => {
   const [cost, setCost] = useState("");
-  const [sales, setSales] = useState("");
-  const [grossProfit, setGrossProfit] = useState(0);
-  const [grossProfitRatio, setGrossProfitRatio] = useState(0);
+  const [grossProfit, setGrossProfit] = useState("");
+  const [sellingPrice, setSellingPrice] = useState(0);
+  const [taxIncludedSellingPrice, setTaxIncludedSellingPrice] = useState(0);
 
   const calculationGrossProfit = () => {
     const parseCost = parseFloat(cost);
-    const parseSales = parseFloat(sales);
-    if (!isNaN(parseCost) && !isNaN(parseSales)) {
-      const calculatedGrossProfit = parseSales - parseCost;
-      const calculatedGrossProfitRatio =
-        Math.round((calculatedGrossProfit / parseSales) * 1000) / 10;
-      setGrossProfit(calculatedGrossProfit.toLocaleString());
-      setGrossProfitRatio(calculatedGrossProfitRatio);
+    const parseGrossProfit = parseFloat(grossProfit / 100);
+    if (!isNaN(parseCost) && !isNaN(parseGrossProfit)) {
+      const calculatedSellingPrice = Math.floor(
+        parseCost / (1 - parseGrossProfit)
+      );
+      const calculatedTaxIncludedSellingPrice = Math.floor(
+        calculatedSellingPrice * 1.1
+      );
+      setSellingPrice(calculatedSellingPrice.toLocaleString());
+      setTaxIncludedSellingPrice(
+        calculatedTaxIncludedSellingPrice.toLocaleString()
+      );
     } else {
-      setGrossProfit(0);
-      setGrossProfitRatio(0);
+      setSellingPrice(0);
+      setTaxIncludedSellingPrice(0);
     }
   };
 
   const GROSS_MARGIN_RATIO_ITEMS = [
-    { label: "原価", type: cost, func: setCost },
-    { label: "売上／売価", type: sales, func: setSales },
+    { label: "原価", type: cost, func: setCost, unit: "円" },
+    {
+      label: "希望粗利率",
+      type: grossProfit,
+      func: setGrossProfit,
+      unit: "%",
+    },
   ];
 
   return (
@@ -57,7 +67,7 @@ const GrossProfitRatio = () => {
                   value={item.type}
                   onChange={(e) => item.func(e.target.value)}
                 />
-                <Typography variant="subtitle1">円</Typography>
+                <Typography variant="subtitle1">{item.unit}</Typography>
               </Stack>
             );
           })}
@@ -97,11 +107,11 @@ const GrossProfitRatio = () => {
         >
           <Stack direction="row" alignItems="center" flexWrap="wrap">
             <Typography variant="subtitle1" fontSize={24} lineHeight="1">
-              粗利益：
+              売価：
             </Typography>
             <Stack direction="row" alignItems="center">
               <Typography variant="subtitle1" fontSize={36} lineHeight="1">
-                {grossProfit}
+                {taxIncludedSellingPrice}
               </Typography>
               <Typography variant="subtitle1" fontSize={24} lineHeight="1">
                 円
@@ -110,14 +120,14 @@ const GrossProfitRatio = () => {
           </Stack>
           <Stack direction="row" alignItems="center" flexWrap="wrap">
             <Typography variant="subtitle1" fontSize={20} lineHeight="1">
-              （粗利率：
+              （税抜：
             </Typography>
             <Stack direction="row" alignItems="center">
               <Typography variant="subtitle1" fontSize={24} lineHeight="1">
-                {grossProfitRatio}
+                {sellingPrice}
               </Typography>
               <Typography variant="subtitle1" fontSize={20} lineHeight="1">
-                %）
+                円）
               </Typography>
             </Stack>
           </Stack>
@@ -127,4 +137,4 @@ const GrossProfitRatio = () => {
   );
 };
 
-export default GrossProfitRatio;
+export default SellingPriceCalculation;
