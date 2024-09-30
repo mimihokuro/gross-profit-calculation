@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import GrossMarginRatio from "./GrossMarginRatio";
 import SellingPriceCalculation from "./SellingPriceCalculation";
+import CostCalculation from "./CostCalculation";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,7 +53,7 @@ export default function BasicTabs() {
         >
           <Tab label="粗利益計算" {...a11yProps(0)} />
           <Tab label="売価計算" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="原価計算" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -62,7 +63,7 @@ export default function BasicTabs() {
         <SellingPriceCalculation />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+        <CostCalculation />
       </CustomTabPanel>
     </Box>
   );
