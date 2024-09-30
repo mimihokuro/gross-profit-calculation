@@ -1,6 +1,7 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import { ArrowForwardIos } from "@mui/icons-material";
 
 const SellingPriceCalculation = () => {
   const [cost, setCost] = useState("");
@@ -31,7 +32,7 @@ const SellingPriceCalculation = () => {
   const GROSS_MARGIN_RATIO_ITEMS = [
     { label: "原価", type: cost, func: setCost, unit: "円" },
     {
-      label: "希望粗利率",
+      label: "粗利率",
       type: grossProfit,
       func: setGrossProfit,
       unit: "%",
@@ -79,7 +80,7 @@ const SellingPriceCalculation = () => {
             rotate: { xs: "90deg", sm: "0deg" },
           }}
         >
-          ＞
+          <ArrowForwardIos sx={{ fontSize: 40 }} />
         </Typography>
         <Button
           variant="contained"

@@ -1,6 +1,7 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import { ArrowForwardIos } from "@mui/icons-material";
 
 const GrossProfitRatio = () => {
   const [cost, setCost] = useState("");
@@ -69,7 +70,7 @@ const GrossProfitRatio = () => {
             rotate: { xs: "90deg", sm: "0deg" },
           }}
         >
-          ＞
+          <ArrowForwardIos sx={{ fontSize: 40 }} />
         </Typography>
         <Button
           variant="contained"
