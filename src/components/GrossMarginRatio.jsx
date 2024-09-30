@@ -26,7 +26,7 @@ const GrossProfitRatio = () => {
 
   const GROSS_MARGIN_RATIO_ITEMS = [
     { label: "原価", type: cost, func: setCost },
-    { label: "売上／売価", type: sales, func: setSales },
+    { label: "売上／売価（税抜）", type: sales, func: setSales },
   ];
 
   return (

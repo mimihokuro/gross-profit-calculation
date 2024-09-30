@@ -24,7 +24,7 @@ const CostCalculation = () => {
 
   const GROSS_MARGIN_RATIO_ITEMS = [
     {
-      label: "売上／売価",
+      label: "売上／売価（税抜）",
       type: sellingPrice,
       func: setSellingPrice,
       unit: "円",
