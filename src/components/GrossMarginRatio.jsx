@@ -1,7 +1,5 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Input, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import { ArrowForwardIos } from "@mui/icons-material";
 
 const GrossProfitRatio = () => {
   const [cost, setCost] = useState("");
@@ -34,56 +32,51 @@ const GrossProfitRatio = () => {
       <Stack
         alignItems="center"
         justifyContent="space-between"
-        sx={{
-          flexDirection: { xs: "column", sm: "row" },
-          gap: { xs: "0", sm: "16px" },
-        }}
+        direction={{ base: "column", sm: "row" }}
+        gap={8}
       >
-        <Stack spacing={4} backgroundColor="#f5f5f5" borderRadius={2} p={2}>
+        <Stack spacing={4} backgroundColor="#f5f5f5" borderRadius={8} p={2}>
           {GROSS_MARGIN_RATIO_ITEMS.map((item) => {
             return (
-              <Stack
-                spacing={1}
-                key={item.label}
-                direction="row"
-                alignItems="center"
-                sx={{
-                  maxWidth: { sm: "160px" },
-                }}
-              >
-                <TextField
-                  id="outlined-basic"
-                  label={item.label}
-                  variant="outlined"
-                  value={item.type}
-                  onChange={(e) => item.func(e.target.value)}
-                />
-                <Typography variant="subtitle1">円</Typography>
+              <Stack key={item.label}>
+                <Text fontSize="14px">{item.label}</Text>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  maxWidth={{ sm: "160px" }}
+                >
+                  <Input
+                    borderColor="#aaaaaa"
+                    focusBorderColor="teal.400"
+                    value={item.type}
+                    onChange={(e) => item.func(e.target.value)}
+                  />
+                  <Text>円</Text>
+                </Stack>
               </Stack>
             );
           })}
         </Stack>
-        <Typography
+        <Text
           fontWeight="bold"
-          fontSize={32}
-          sx={{
-            rotate: { xs: "90deg", sm: "0deg" },
-          }}
+          fontSize={24}
+          transform={{ base: "rotate(90deg)", sm: "rotate(0deg)" }}
         >
-          <ArrowForwardIos sx={{ fontSize: 40 }} />
-        </Typography>
+          ＞
+        </Text>{" "}
         <Button
-          variant="contained"
           fontWeight="bold"
+          variant="filled"
+          backgroundColor="teal.400"
+          color="#ffffff"
           sx={{ fontSize: "20px" }}
           onClick={calculationGrossProfit}
-          endIcon={<RocketLaunchIcon />}
         >
           計算実行
         </Button>
         <Stack
           flexGrow={1}
-          borderRadius={2}
+          borderRadius={8}
           gap={1}
           py={4}
           px={2}
@@ -97,29 +90,29 @@ const GrossProfitRatio = () => {
           alignItems="center"
         >
           <Stack direction="row" alignItems="center" flexWrap="wrap">
-            <Typography variant="subtitle1" fontSize={24} lineHeight="1">
+            <Text variant="subtitle1" fontSize={24} lineHeight="1">
               粗利益：
-            </Typography>
+            </Text>
             <Stack direction="row" alignItems="center">
-              <Typography variant="subtitle1" fontSize={36} lineHeight="1">
+              <Text variant="subtitle1" fontSize={36} lineHeight="1">
                 {grossProfit}
-              </Typography>
-              <Typography variant="subtitle1" fontSize={24} lineHeight="1">
+              </Text>
+              <Text variant="subtitle1" fontSize={24} lineHeight="1">
                 円
-              </Typography>
+              </Text>
             </Stack>
           </Stack>
           <Stack direction="row" alignItems="center" flexWrap="wrap">
-            <Typography variant="subtitle1" fontSize={20} lineHeight="1">
+            <Text variant="subtitle1" fontSize={20} lineHeight="1">
               （粗利率：
-            </Typography>
+            </Text>
             <Stack direction="row" alignItems="center">
-              <Typography variant="subtitle1" fontSize={24} lineHeight="1">
+              <Text variant="subtitle1" fontSize={24} lineHeight="1">
                 {grossProfitRatio}
-              </Typography>
-              <Typography variant="subtitle1" fontSize={20} lineHeight="1">
+              </Text>
+              <Text variant="subtitle1" fontSize={20} lineHeight="1">
                 %）
-              </Typography>
+              </Text>
             </Stack>
           </Stack>
         </Stack>
