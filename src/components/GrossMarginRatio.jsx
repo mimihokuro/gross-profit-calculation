@@ -33,7 +33,7 @@ const GrossProfitRatio = () => {
         alignItems="center"
         justifyContent="space-between"
         direction={{ base: "column", sm: "row" }}
-        gap={8}
+        gap={4}
       >
         <Stack spacing={4} backgroundColor="#f5f5f5" borderRadius={8} p={2}>
           {GROSS_MARGIN_RATIO_ITEMS.map((item) => {
