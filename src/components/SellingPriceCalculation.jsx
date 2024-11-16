@@ -61,7 +61,7 @@ const SellingPriceCalculation = () => {
                     value={item.type}
                     onChange={(e) => item.func(e.target.value)}
                   />
-                  <Text>円</Text>
+                  <Text>{item.unit}</Text>
                 </Stack>
               </Stack>
             );
